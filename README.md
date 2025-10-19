@@ -1,69 +1,29 @@
-# MLOps Graded Assignment - Week 4 Resources 
+# MLOps Assignment 4: 
 
-Please find the Git command reference from lectures
 
-# Part A: Convert week 2’s code base into a GitHub repo
-## Check local status
-git status
-## Ensure commits are latest
-git log
-## check user who is logged in locally
-git config user.name
-git config user.email
-## create a new repo in your public GitHub account
-## Copy the url this gives you
-https://github.com/\<user_name\>/\<repo_name\>.git
+## What I Did: I built an automatic code checker using GitHub Actions.
 
-## point local to your repo
-git remote remove origin
+-It uses DVC to get the ML model and data.
 
-git remote add origin https://github.com/\<user_name\>/\<repo_name\>.git
+-It uses Pytest to run tests and check the model's score.
 
-## configure tokens
-Go to github.com/settings/tokens
-Create a classic token. Use that instead of a password.
+-It uses CML to post a test report on GitHub.
 
-## push code to repo
-git push -u origin master
+## Why It's Important: 
+-It automatically checks for mistakes, which helps teams build strong software without breaking it.
 
-# Part B: Write a simple Test that can be invoked automatically for sanity.
+## What I Learned: 
+-I learned how to use GitHub Actions, Pytest, DVC, and CML for automation.
 
-For sanity testing using predictions on samples, the trained
-model itself needed to be saved.
+## Challenges and Solutions
+Challenge: The Python installer (pip) kept failing because the virtual computer was missing basic code-building tools.
 
-Write a Python unit test file. 
-Execute to verify - If when the code is attempted to be committed and you see
-that HEAD is disconnected, then do the following.
+-Solution: I installed the "build-essential" tools on the computer.
 
-## Then, check out a new branch “unit-tested-branch”
-git checkout -b unit-tested-branch
+-Challenge: The installer got stuck in loops trying to find the right versions of the libraries.
 
-## Confirm that remote is configured correctly
-git remote -v
+- Solution: I created a perfect "shopping list" (requirements.txt) and a "recipe" (dvc.yaml) to tell the tools exactly what to do. I also fixed bugs in the Python code so it used the correct column names.
 
-## push branch to remote
-git push -u origin unit-tested-branch
+- Challenge: I couldn't log in to Google Drive because the browser was blocked.
 
-## merge branch to master using
-git checkout master
-
-git pull origin master
-
-git merge unit-tested-branch
-
-git push origin master
-## and then delete the branch both locally and remotely
-git branch -d unit-tested-branch
-
-git push origin --delete unit-tested-branch
-
-# Part C: Configure GitHub action to run this test every time code changes.
-
-Follow the yaml.
-
-Once fully done, execute the workflow from Github UI. 
-
-Test out the successful execution.
-A full run includes giving permissions to write too. 
-
-Once completed, the job itself shows description of results as a comment under that commit.
+Solution: I created a special robot user (a Service Account) with its own secret key to log in automatically without a browser.
