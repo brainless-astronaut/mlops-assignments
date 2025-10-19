@@ -18,24 +18,24 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
       - name: Install DVC
         uses: iterative/setup-dvc@v1
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Pull data and model from DVC
+      - name: Pull data and model
         env:
           GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
-        run: |
-          dvc pull -v
+        run: dvc pull
 
-      - name: Run tests and create report
-        run: |
-          pytest > report.txt
+      - name: Run tests
+        run: pytest > report.txt
 
-      - name: Create CML comment on PR
+      - name: Install CML
+        run: sudo npm install -g @dvcorg/cml
+
+      - name: Create CML report
         env:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
