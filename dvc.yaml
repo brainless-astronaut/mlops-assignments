@@ -21,5 +21,3 @@ stages:
     - train.seed
     - train.n_est
     - train.min_split
-    outs:
-    - models/model.pkl
