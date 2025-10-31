@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/299ff083ab7c4b83a8725ed0540e74c6/artifacts
+end_time: 1761912854094
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 299ff083ab7c4b83a8725ed0540e74c6
+run_name: funny-bass-411
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761912849846
+status: 3
+tags: []
+user_id: ssahana1608
