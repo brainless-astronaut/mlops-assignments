@@ -1,0 +1,43 @@
+name: Model-CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install DVC
+        uses: iterative/setup-dvc@v1
+
+      - name: Pull data and model
+        env:
+          GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
+        run: dvc pull
+
+      - name: Run tests
+        run: pytest > report.txt
+
+      - name: Install CML
+        run: sudo npm install -g @dvcorg/cml
+
+      - name: Create CML report
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat report.txt >> report.md
+          cml comment create report.md
