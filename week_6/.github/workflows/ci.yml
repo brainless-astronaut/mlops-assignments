@@ -1,8 +1,6 @@
-name: CI-CD Pipeline for Iris App
-
 on:
   push:
-    branches: 
+    branches:
       - main
 
 env:
@@ -17,7 +15,6 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
