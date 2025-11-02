@@ -1,8 +1,7 @@
-name: CI-CD Pipeline for Iris App
-
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
@@ -16,7 +15,6 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout
       uses: actions/checkout@v3
