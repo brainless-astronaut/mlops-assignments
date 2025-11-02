@@ -1,6 +1,0 @@
-artifact_location: mlflow-artifacts:/905479759796455277
-creation_time: 1761912813164
-experiment_id: '905479759796455277'
-last_update_time: 1761912813164
-lifecycle_stage: active
-name: Iris Model Tuning
