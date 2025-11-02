@@ -1,1 +1,15 @@
-.venv
+# Virtual Environments
+.venv/
+venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# DVC and MLflow artifacts
+.dvc/cache
+mlruns/
+mlartifacts/
+
+# Output data and models from all weeks
+week_*/data/prepared/
+week_*/models/
