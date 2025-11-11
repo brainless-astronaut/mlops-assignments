@@ -1,3 +1,5 @@
+name: Build and Deploy to GKE
+
 on:
   push:
     branches:
@@ -24,11 +26,18 @@ jobs:
       with:
         credentials_json: '${{ secrets.GCP_SA_KEY }}'
 
+    # FIX: This new step correctly gets credentials and installs the auth plugin
+    - name: Get GKE Credentials
+      uses: 'google-github-actions/get-gke-credentials@v1'
+      with:
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_REGION }}
+
     - name: Configure Docker
       run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
 
     - name: Build Docker image
-      run: docker build -t ${{ env.IMAGE }} .
+      run: docker build -t ${{ env.IMAGE }} ./week_6
 
     - name: Tag and Push Docker image
       run: |
@@ -37,6 +46,5 @@ jobs:
 
     - name: Deploy to GKE
       run: |
-        gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --region ${{ env.GKE_REGION }}
-        sed -i 's|IMAGE_PLACEHOLDER|${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}|g' deployment.yaml
-        kubectl apply -f deployment.yaml
+        sed -i 's|IMAGE_PLACEHOLDER|${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}|g' week_6/deployment.yaml
+        kubectl apply -f week_6/deployment.yaml
