@@ -1,0 +1,49 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python prepare.py data/raw/iris.csv
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 341a3b5244f213282b7b0920b729c592
+      size: 3975
+    - path: prepare.py
+      hash: md5
+      md5: 01dfb121441a293ab808e98d54477e40
+      size: 987
+    params:
+      params.yaml:
+        prepare.seed: 20170428
+        prepare.split: 0.2
+    outs:
+    - path: data/prepared/test.csv
+      hash: md5
+      md5: 294ccddc5a33caa9376b4feb6161de4c
+      size: 597
+    - path: data/prepared/train.csv
+      hash: md5
+      md5: 59d3c525cf3a50a0d497c1d5b56f073d
+      size: 2217
+  train:
+    cmd: python train.py data/prepared/ models/
+    deps:
+    - path: data/prepared/
+      hash: md5
+      md5: 091d70a9ae9bba01dfbfbf2d9d09a780.dir
+      size: 2835
+      nfiles: 3
+    - path: train.py
+      hash: md5
+      md5: 01cb6f0664ee4ad11990fbb9b1c6888c
+      size: 1501
+    params:
+      params.yaml:
+        train.min_split:
+        - 2
+        - 4
+        - 6
+        train.n_est:
+        - 50
+        - 100
+        - 150
+        train.seed: 20170428

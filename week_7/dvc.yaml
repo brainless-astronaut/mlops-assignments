@@ -1,0 +1,23 @@
+
+stages:
+  prepare:
+    cmd: python prepare.py data/raw/iris.csv
+    deps:
+    - prepare.py
+    - data/raw/iris.csv
+    params:
+    - prepare.split
+    - prepare.seed
+    outs:
+    - data/prepared/train.csv
+    - data/prepared/test.csv
+
+  train:
+    cmd: python train.py data/prepared/ models/
+    deps:
+    - train.py
+    - data/prepared/
+    params:
+    - train.seed
+    - train.n_est
+    - train.min_split
