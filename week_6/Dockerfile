@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.11-slim
 
 WORKDIR /app
 
@@ -9,5 +9,4 @@ COPY . .
 
 EXPOSE 8080
 
-CMD ['gunicorn', '--bind', '0.0.0.0:8080', 'app:app']
-
+CMD gunicorn --bind 0.0.0.0:8080 app:app
