@@ -16,7 +16,7 @@ input_file = sys.argv[1]
 os.makedirs("data/prepared", exist_ok=True)
 
 # Read the data, rename columns, and map text labels to numbers
-df = pd.read_csv(input_file)
+df = pd.read_csv(input_file, header = 0)
 df.rename(columns={
     "sepal.length": "sepal_length",
     "sepal.width": "sepal_width",
