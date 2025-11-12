@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/b373ba1c86c24db7ac6f511daecc67cb/artifacts
+end_time: 1762968763825
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: b373ba1c86c24db7ac6f511daecc67cb
+run_name: crawling-newt-827
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762968763559
+status: 3
+tags: []
+user_id: ssahana1608

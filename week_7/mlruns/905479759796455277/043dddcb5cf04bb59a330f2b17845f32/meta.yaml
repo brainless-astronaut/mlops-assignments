@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/043dddcb5cf04bb59a330f2b17845f32/artifacts
+end_time: 1762968931602
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 043dddcb5cf04bb59a330f2b17845f32
+run_name: silent-squid-873
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762968931433
+status: 3
+tags: []
+user_id: ssahana1608

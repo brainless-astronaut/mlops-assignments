@@ -1,6 +1,6 @@
 stages:
   prepare:
-    cmd: python prepare.py
+    cmd: python prepare.py data/raw/iris.csv
     deps:
     - prepare.py
     - data/raw/iris.csv
@@ -9,7 +9,7 @@ stages:
     - data/prepared
 
   train:
-    cmd: python train.py
+    cmd: python train.py data/prepared models
     deps:
     - train.py
     - data/prepared

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/87812eef7a244aa2981a7df32dec8b11/artifacts
+end_time: 1762968764114
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 87812eef7a244aa2981a7df32dec8b11
+run_name: bouncy-rook-357
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762968763849
+status: 3
+tags: []
+user_id: ssahana1608

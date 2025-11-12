@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   prepare:
-    cmd: python prepare.py
+    cmd: python prepare.py data/raw/iris.csv
     deps:
     - path: data/raw/iris.csv
       hash: md5
@@ -9,38 +9,31 @@ stages:
       size: 3975
     - path: params.yaml
       hash: md5
-      md5: 8b097b74c1458c8988042cff352f8090
-      size: 316
+      md5: 8bdd6c133e0dae7d35b486fb4ec9d148
+      size: 325
     - path: prepare.py
       hash: md5
-      md5: ea77bbdff1048fd0440bc1d01f2a3291
-      size: 1110
+      md5: 01dfb121441a293ab808e98d54477e40
+      size: 987
     outs:
     - path: data/prepared
       hash: md5
-      md5: 112d28e2cb43d34416551f8a579f83ba.dir
-      size: 2523
+      md5: 8471dcb682e4a2b27649fa8548b24347.dir
+      size: 2814
       nfiles: 2
   train:
-    cmd: python train.py data/prepared/ models/
+    cmd: python train.py data/prepared models
     deps:
-    - path: data/prepared/
+    - path: data/prepared
       hash: md5
-      md5: 091d70a9ae9bba01dfbfbf2d9d09a780.dir
-      size: 2835
-      nfiles: 3
+      md5: 8471dcb682e4a2b27649fa8548b24347.dir
+      size: 2814
+      nfiles: 2
+    - path: params.yaml
+      hash: md5
+      md5: 8bdd6c133e0dae7d35b486fb4ec9d148
+      size: 325
     - path: train.py
       hash: md5
-      md5: 01cb6f0664ee4ad11990fbb9b1c6888c
-      size: 1501
-    params:
-      params.yaml:
-        train.min_split:
-        - 2
-        - 4
-        - 6
-        train.n_est:
-        - 50
-        - 100
-        - 150
-        train.seed: 20170428
+      md5: 88a07d76a235dc98a7563c7436c0d3ca
+      size: 2695

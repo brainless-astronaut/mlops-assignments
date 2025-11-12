@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/6b3545dda7ff4fdab9a58d2fd8200471/artifacts
+end_time: 1762968763260
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 6b3545dda7ff4fdab9a58d2fd8200471
+run_name: tasteful-perch-720
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762968762984
+status: 3
+tags: []
+user_id: ssahana1608
