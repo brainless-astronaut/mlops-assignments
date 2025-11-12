@@ -36,18 +36,20 @@ jobs:
       run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
 
     - name: Build Docker image
+      # Tell Docker where to find your files
       run: docker build -t ${{ env.IMAGE }} ./week_7
 
     - name: Tag and Push Docker image
       run: |
-        docker tag ${{ env.IMAGE }} ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GGCP_PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
+        docker tag ${{ env.IMAGE }} ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
         docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}
 
     - name: Deploy to GKE
       run: |
+        # Tell sed and kubectl where your files are
         sed -i 's|IMAGE_PLACEHOLDER|${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE }}:${{ github.sha }}|g' week_7/deployment.yaml
         kubectl apply -f week_7/deployment.yaml
-
+    
     - name: Apply HPA (Autoscaler)
       run: kubectl apply -f week_7/hpa.yaml
 

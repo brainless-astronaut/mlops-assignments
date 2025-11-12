@@ -1,9 +1,19 @@
 prepare:
   split: 0.2
-  seed: 20170428
+  seed: 42
 
 train:
-  seed: 20170428
-  # These are now lists of values to try
-  n_est: [50, 100, 150]
-  min_split: [2, 4, 6]
+  max_evals: 10 # Number of Hyperopt experiments
+  
+  # This search_space block will be read by Hyperopt
+  search_space:
+    n_estimators:
+      type: quniform
+      min: 50
+      max: 200
+      q: 50
+    max_depth:
+      type: quniform
+      min: 5
+      max: 20
+      q: 1

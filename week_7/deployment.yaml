@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: iris-deployment
 spec:
-  replicas: 2 # Run 2 copies of our app
+  replicas: 1 # Start with 1, HPA will take over
   selector:
     matchLabels:
       app: iris-app
@@ -14,27 +14,25 @@ spec:
     spec:
       containers:
       - name: iris-app-container
-        # IMPORTANT: The image path will be replaced by the GitHub workflow
-        image: IMAGE_PLACEHOLDER 
+        image: IMAGE_PLACEHOLDER # This is replaced by the GitHub Action
         ports:
         - containerPort: 8080
-        
+        # This block is CRITICAL for autoscaling
         resources:
           requests:
-            cpu: "250m"
+            cpu: "250m"  # Request 0.25 of a vCPU
           limits:
-            cpu: "500m"
-
+            cpu: "500m"  # Set a max limit of 0.5 vCPU
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: iris-service
 spec:
-  type: LoadBalancer # Expose the service to the internet
+  type: LoadBalancer # Exposes the app to the internet
   selector:
     app: iris-app
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 8080
+    port: 80       # The public internet port
+    targetPort: 8080 # Your app's container port
