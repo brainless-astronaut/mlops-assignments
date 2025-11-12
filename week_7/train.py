@@ -1,50 +1,73 @@
-import os
-import sys
-import yaml
-import pandas as pd
+import pandas as pd 
+import mlflow, mlflow.sklearn
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-import mlflow
-import mlflow.sklearn
+import yaml
+from hyperopt import fmin, tpe, hp, Trials, STATUS_OK, space_eval
 
-## --- MLflow Setup --- ##
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_experiment("Iris Model Tuning")
+## Set MLflow server URI
+mlflow.set_tracking_uri("http://127.0.01:5000")
+mlflow.set_experiment("Iris Experiment")
 
-## --- Load Data and Params --- ##
-params = yaml.safe_load(open("params.yaml"))["train"]
-seed = params["seed"]
+## Load Data
+train_df = pd.read_csv("data/prepared/train.csv") 
+test_id = pd.read_csv("data/prepared/test.csv")
+X_train, y_train = train_df.drop('target', axis = 1), train_df['target']
+X_test, y_test = test_df.drop('target', axis = 1), test_df['target']
 
-input_dir = sys.argv[1]
-output_dir = sys.argv[2]
+## Load search space form params.yaml
+params = yaml.safe_load(open('params.yaml'))['train']
+max_evals = params['max_evals']
 
-os.makedirs(output_dir, exist_ok=True)
+## Create Hyperopt
+search_space = {}
+for key, value in params['search_space'].items():
+    if value['type'] == 'quniform':
+        search_space[key] = hp.quniform(key, value['min'], value['max'], value['q'])
+    elif value['type'] == 'uniform':
+        search_space[key] = hp.uniform(key, value['min'], value['max'])
 
-train_df = pd.read_csv(os.path.join(input_dir, "train.csv"))
-test_df = pd.read_csv(os.path.join(input_dir, "test.csv"))
+## Training function
+def objective(params):
+    params['n_estimators'] = int(params['n_estimators'])
+    params['max_depth'] = int(params['max_depth'])
 
-X_train = train_df.drop("target", axis=1)
-y_train = train_df["target"]
-X_test = test_df.drop("target", axis=1)
-y_test = test_df["target"]
+    with mlflow.start_run(nested=True):
+        clf = RandomForestClassifier(**params, random_state=42)
+        clf.fit(X_train, y_train)
+        preds = clf.predict(X_test)
+        acc = accuracy_score(y_test, preds)
+        
+        mlflow.log_params(params)
+        mlflow.log_metric('accuracy', acc)
+        
+        return {'loss': -acc, 'status': STATUS_OK}
 
-## --- Hyperparameter Tuning Loop --- ##
-for n_est in params["n_est"]:
-    for min_split in params["min_split"]:
-        with mlflow.start_run():
-            mlflow.log_param("n_estimators", n_est)
-            mlflow.log_param("min_samples_split", min_split)
+## Main search
+with mlflow.start_run(run_name="Hyperparameter Search") as parent_run:
+    best = fmin(
+        fn=objective,
+        space=search_space,
+        algo=tpe.suggest,
+        max_evals=max_evals,
+        trials=Trials()
+    )
+    
+    # Get the best parameters
+    best_params = space_eval(search_space, best)
+    best_params['n_estimators'] = int(best_params['n_estimators'])
+    best_params['max_depth'] = int(best_params['max_depth'])
+    
+    print('Best params found:', best_params)
+    
+    final_model = RandomForestClassifier(**best_params, random_state=42)
+    final_model.fit(X_train, y_train)
+    
+    mlflow.log_params(best_params)
+    mlflow.sklearn.log_model(
+        sk_model = final_model,
+        artifact_path = 'model',
+        registered_model_name = 'iris-classifier' 
+    )
 
-            clf = RandomForestClassifier(
-                n_estimators=n_est, min_samples_split=min_split, random_state=seed
-            )
-            clf.fit(X_train, y_train)
-
-            predictions = clf.predict(X_test)
-            acc = accuracy_score(y_test, predictions)
-
-            mlflow.log_metric("accuracy", acc)
-
-            mlflow.sklearn.log_model(clf, "model")
-
-            print(f"Logged run with n_est={n_est}, min_split={min_split}, accuracy={acc:.4f}")
+print('Hyperopt search complete.')

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/f1d0c4fc0f5647eeb6e44ea14a54ce67/artifacts
+end_time: 1761912836838
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: f1d0c4fc0f5647eeb6e44ea14a54ce67
+run_name: victorious-bee-557
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761912832550
+status: 3
+tags: []
+user_id: ssahana1608

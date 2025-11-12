@@ -1,16 +1,18 @@
-## MLOps Assignment 5
+# MLOps Week 7: Deployment and Autoscaling
 
-### What's in This Project? 
-Here is a list of the important files and what each one does:
+This project builds a complete CI/CD pipeline to deploy and autoscale an Iris species classifier.
 
- - prepare.py: This is our data cleaner. It takes the raw iris.csv data, gives the columns proper names, and splits it into a training set and a testing set.
+## File Utility
 
- - train.py: This is our model trainer. It uses the clean data to train many different versions of our model (hyperparameter tuning) and records all the results in our MLflow "lab notebook."
-
- - evaluate.py: This is our final exam script. It downloads the best model from our MLflow library (the Model Registry) and runs one last test to make sure it works well.
-
- - dvc.yaml: This is the main recipe book for our project. It tells DVC the exact steps to run the pipeline, like running prepare.py first and then train.py.
-
- - params.yaml: This file holds all the important settings for our project, like which model settings to try out during training.
-
- - requirements.txt: This is the shopping list for our project. It tells Python which libraries (like pandas and mlflow) need to be installed for the code to work.
+* **`prepare.py`**: Cleans raw data and splits it into `train.csv` and `test.csv`.
+* **`train.py`**: Uses Hyperopt to find the best model and logs all experiments and the final model to MLflow.
+* **`evaluate.py`**: A script to load the "latest" registered model from MLflow and confirm it works.
+* **`app.py`**: A Flask web server that loads the registered model and serves predictions.
+* **`requirements.txt`**: A list of all Python libraries needed for this project.
+* **`params.yaml`**: Contains all parameters for the DVC pipeline and the Hyperopt search space.
+* **`dvc.yaml`**: The DVC "recipe" that defines the `prepare` and `train` stages.
+* **`Dockerfile`**: Instructions for Docker to package the `app.py` into a container.
+* **`deployment.yaml`**: Instructions for Kubernetes to run our app and expose it to the internet.
+* **`hpa.yaml`**: Instructions for Kubernetes to automatically scale our app from 1 to 3 pods based on CPU load.
+* **`script.lua`**: A helper script for the `wrk` stress-testing tool, defining the JSON data for `POST` requests.
+* **`.github/workflows/main.yml`**: The master GitHub Actions workflow that automatically builds, deploys, and stress-tests the application on every push to `main`.

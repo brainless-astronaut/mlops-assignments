@@ -6,13 +6,13 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: iris-deployment ## deplayment
+    name: iris-deployment # Must match your Deployment name
   minReplicas: 1
-  maxReplicas: 3 ## max of pods
+  maxReplicas: 3 # As required by the assignment
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50 ## Targeting 50% CPU usage
+        averageUtilization: 50 # Target 50% CPU usage
