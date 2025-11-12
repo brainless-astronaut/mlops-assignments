@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/5804729516f24d17b538c247a56fe3fb/artifacts
+end_time: 1762968764418
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 5804729516f24d17b538c247a56fe3fb
+run_name: marvelous-shrike-518
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762968764144
+status: 3
+tags: []
+user_id: ssahana1608

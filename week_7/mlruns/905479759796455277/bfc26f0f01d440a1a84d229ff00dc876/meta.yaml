@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/bfc26f0f01d440a1a84d229ff00dc876/artifacts
+end_time: 1762968931415
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: bfc26f0f01d440a1a84d229ff00dc876
+run_name: puzzled-shoat-571
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762968931022
+status: 3
+tags: []
+user_id: ssahana1608

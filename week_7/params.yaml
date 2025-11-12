@@ -4,7 +4,7 @@ prepare:
 
 train:
   max_evals: 10 # Number of Hyperopt experiments
-  
+  seed: 42 
   # This search_space block will be read by Hyperopt
   search_space:
     n_estimators:
