@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/157945098481010532/f60c771a63fc406093f36f8de215ec18/artifacts
+end_time: 1762945530371
+entry_point_name: ''
+experiment_id: '157945098481010532'
+lifecycle_stage: active
+run_id: f60c771a63fc406093f36f8de215ec18
+run_name: monumental-ray-523
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762945530350
+status: 4
+tags: []
+user_id: ssahana1608

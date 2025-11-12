@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/157945098481010532/7cf0a18a7db64e28805d6773b56df63f/artifacts
+end_time: 1762947182123
+entry_point_name: ''
+experiment_id: '157945098481010532'
+lifecycle_stage: active
+run_id: 7cf0a18a7db64e28805d6773b56df63f
+run_name: glamorous-shark-381
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762947182103
+status: 4
+tags: []
+user_id: ssahana1608

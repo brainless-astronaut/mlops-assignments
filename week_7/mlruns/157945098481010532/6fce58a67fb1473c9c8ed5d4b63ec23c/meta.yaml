@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/157945098481010532/6fce58a67fb1473c9c8ed5d4b63ec23c/artifacts
+end_time: 1762954002290
+entry_point_name: ''
+experiment_id: '157945098481010532'
+lifecycle_stage: active
+run_id: 6fce58a67fb1473c9c8ed5d4b63ec23c
+run_name: Hyperparameter Search
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762954002211
+status: 4
+tags: []
+user_id: ssahana1608

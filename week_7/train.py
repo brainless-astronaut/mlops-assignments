@@ -11,7 +11,7 @@ mlflow.set_experiment("Iris Experiment")
 
 ## Load Data
 train_df = pd.read_csv("data/prepared/train.csv") 
-test_id = pd.read_csv("data/prepared/test.csv")
+test_df = pd.read_csv("data/prepared/test.csv")
 X_train, y_train = train_df.drop('target', axis = 1), train_df['target']
 X_test, y_test = test_df.drop('target', axis = 1), test_df['target']
 
