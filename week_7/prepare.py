@@ -18,8 +18,17 @@ col_names = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'targ
 ## Reading the data
 df = pd.read_csv('data/raw/iris.csv', header = None, names = col_names)
 
+## Rename columns from "sepal.length" to "sepal_length"
+df.rename(columns={
+    "sepal.length": "sepal_length",
+    "sepal.width": "sepal_width",
+    "petal.length": "petal_length",
+    "petal.width": "petal_width",
+    "variety": "target"
+}, inplace = True)
+
 ## Mapping the string tagets to integers
-target_map = {'Iris-setosa': 0, 'Iris-versicolor': 1, "Iris-virginica': 2}
+target_map = {'Iris-setosa': 0, 'Iris-versicolor': 1, 'Iris-virginica': 2}
 df['target'] = df['target'].map(target_map)
 
 ## Split and save

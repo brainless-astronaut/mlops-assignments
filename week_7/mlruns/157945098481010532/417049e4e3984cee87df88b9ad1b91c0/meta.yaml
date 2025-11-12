@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/157945098481010532/417049e4e3984cee87df88b9ad1b91c0/artifacts
+end_time: 1762954002267
+entry_point_name: ''
+experiment_id: '157945098481010532'
+lifecycle_stage: active
+run_id: 417049e4e3984cee87df88b9ad1b91c0
+run_name: placid-rook-711
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762954002247
+status: 4
+tags: []
+user_id: ssahana1608
