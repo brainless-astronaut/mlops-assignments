@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/1371b87da7c247d8b2f481d63f942167/artifacts
+end_time: 1762974214519
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 1371b87da7c247d8b2f481d63f942167
+run_name: mercurial-colt-970
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762974214255
+status: 3
+tags: []
+user_id: ssahana1608

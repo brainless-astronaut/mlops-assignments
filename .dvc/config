@@ -1,6 +1,6 @@
 [core]
-    remote = myremote
-
-['remote "myremote"']
-    url = gdrive://1iIQuvTV001ADmE7lQs0LA34KanR4SOwD
-    gdrive_service_account_json_file_path = /home/ssahana1608/inbound-density-474006-b0-336825353632.json
+    remote = gcs
+['remote "gcs"']
+    url = gs://mlops-oppe-1-bucket
+    projectname = inbound-density-474006-b0
+    credentialpath = /home/ssahana1608/mlops-assignments/my-key.json

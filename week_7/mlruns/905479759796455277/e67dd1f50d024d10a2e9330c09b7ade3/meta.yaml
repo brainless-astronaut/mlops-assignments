@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/e67dd1f50d024d10a2e9330c09b7ade3/artifacts
+end_time: 1762974212823
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: e67dd1f50d024d10a2e9330c09b7ade3
+run_name: unique-colt-426
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762974212571
+status: 3
+tags: []
+user_id: ssahana1608

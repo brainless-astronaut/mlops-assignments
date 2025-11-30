@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/273d5f3bce554e2aa2c2b9117c131303/artifacts
+end_time: 1762974212349
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 273d5f3bce554e2aa2c2b9117c131303
+run_name: vaunted-hound-38
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762974212111
+status: 3
+tags: []
+user_id: ssahana1608

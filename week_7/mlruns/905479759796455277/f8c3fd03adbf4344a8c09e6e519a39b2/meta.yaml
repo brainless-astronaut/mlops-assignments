@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/f8c3fd03adbf4344a8c09e6e519a39b2/artifacts
+end_time: 1762974213792
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: f8c3fd03adbf4344a8c09e6e519a39b2
+run_name: marvelous-bug-225
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762974213474
+status: 3
+tags: []
+user_id: ssahana1608

@@ -1,6 +1,5 @@
 # Virtual environment
 .venv/
-venv/
 
 # Jupyter notebooks checkpoints
 .ipynb_checkpoints/
@@ -11,3 +10,6 @@ venv/
 # Python cache
 __pycache__/
 *.pyc
+
+# GSA_Key
+my-key.json

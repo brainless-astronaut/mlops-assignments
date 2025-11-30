@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/905479759796455277/102701315ec040abbdc28b9afb9052ab/artifacts
+end_time: 1762974214723
+entry_point_name: ''
+experiment_id: '905479759796455277'
+lifecycle_stage: active
+run_id: 102701315ec040abbdc28b9afb9052ab
+run_name: brawny-shrike-704
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1762974214541
+status: 3
+tags: []
+user_id: ssahana1608
