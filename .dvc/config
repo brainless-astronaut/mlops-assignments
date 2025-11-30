@@ -1,5 +1,6 @@
 [core]
     remote = gcs
+    autostage = true
 ['remote "gcs"']
     url = gs://mlops-oppe-1-bucket
     projectname = inbound-density-474006-b0
