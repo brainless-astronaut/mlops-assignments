@@ -13,3 +13,4 @@ __pycache__/
 
 # GSA_Key
 my-key.json
+gcs-key.json
