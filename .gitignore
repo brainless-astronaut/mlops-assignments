@@ -12,5 +12,4 @@ __pycache__/
 *.pyc
 
 # GSA_Key
-my-key.json
 gcp-key.json
