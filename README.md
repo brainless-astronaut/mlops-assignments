@@ -1,18 +1,23 @@
- # MLOps Week 7: Deployment and Autoscaling
+# Week 11: LLM Governance and Guardrails
 
-This project builds a complete CI/CD pipeline to deploy and autoscale an Iris species classifier.
+## Student Details
+**ID:** 21F3002750
+**Name:** S Sahana
 
-## File Utility
+## Project Overview
+This project evaluates the security vulnerabilities of a simulated Fine-Tuned LLM pipeline and implements a Guardrail layer to mitigate risks.
 
-* **`prepare.py`**: Cleans raw data and splits it into `train.csv` and `test.csv`.
-* **`train.py`**: Uses Hyperopt to find the best model and logs all experiments and the final model to MLflow.
-* **`evaluate.py`**: A script to load the "latest" registered model from MLflow and confirm it works.
-* **`app.py`**: A Flask web server that loads the registered model and serves predictions.
-* **`requirements.txt`**: A list of all Python libraries needed for this project.
-* **`params.yaml`**: Contains all parameters for the DVC pipeline and the Hyperopt search space.
-* **`dvc.yaml`**: The DVC "recipe" that defines the `prepare` and `train` stages.
-* **`Dockerfile`**: Instructions for Docker to package the `app.py` into a container.
-* **`deployment.yaml`**: Instructions for Kubernetes to run our app and expose it to the internet.
-* **`hpa.yaml`**: Instructions for Kubernetes to automatically scale our app from 1 to 3 pods based on CPU load.
-* **`script.lua`**: A helper script for the `wrk` stress-testing tool, defining the JSON data for `POST` requests.
-* **`.github/workflows/main.yml`**: The master GitHub Actions workflow that automatically builds, deploys, and stress-tests the application on every push to `main`.
+## Files Included
+1. **llm_pipeline.py**: The main inference pipeline using `distilgpt2`. It mimics a finetuned model and integrates the governance layer.
+2. **guardrails.py**: A custom Python class that implements Input/Output filtering. It detects:
+   - Prompt Injection (e.g., "Ignore previous instructions")
+   - PII/Secret Leakage (e.g., "API Key")
+   - Harmful Content (e.g., "Dangerous weapon")
+3. **evaluate_governance.py**: An evaluation script that runs a battery of adversarial prompts against the model—first without guardrails, then with guardrails enabled—and saves the results to CSV.
+4. **unsafe_results.csv**: Evidence of the model's vulnerability before governance.
+5. **safe_results.csv**: Evidence of the guardrails successfully blocking attacks.
+
+## How to Run
+1. Install dependencies: `pip install transformers torch pandas`
+2. Run the evaluation: `python evaluate_governance.py`
+3. Check the generated CSV files for the audit report.
